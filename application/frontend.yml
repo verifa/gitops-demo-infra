@@ -1,6 +1,8 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  annotations:
+    fluxcd.io/automated: "true"
   labels:
     app: frontend
   name: frontend
@@ -16,7 +18,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: docker.io/benmarsden/gol-backend-prod:f83cfbb
+        image: docker.io/benmarsden/gol-frontend-prod:caca55d
         ports:
           - name: frontend
             containerPort: 80
