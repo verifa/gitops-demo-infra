@@ -1,0 +1,25 @@
+repositories:
+- name: "fluxcd"
+  url: "https://charts.fluxcd.io"
+
+releases:
+- name: fluxcd
+  namespace: fluxcd
+  chart: fluxcd/flux
+  set: 
+    - name: git.url
+      value: https://$(GIT_AUTHUSER):$(GIT_AUTHKEY)@github.com/verifa/gitops-demo-infra.git
+    - name: git.pollInterval
+      value: 1m
+    - name: git.timeout
+      value: 1m
+    - name: env.secretName
+      value: flux-git-auth
+    - name: registry.automationInterval
+      value: 1m
+- name: sealed-secrets
+  namespace: kube-system
+  chart: stable/sealed-secrets
+  set:
+    - name: controller.create
+      value: true

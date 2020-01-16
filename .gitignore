@@ -1,0 +1,7 @@
+*.tfvars
+.terraform
+*.tfstate.backup
+terraform.tfstate
+
+key.json
+admin.env
