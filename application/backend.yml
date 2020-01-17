@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: backend
-        image: docker.io/benmarsden/gol-backend-prod:07a5eb5
+        image: docker.io/benmarsden/gol-backend-prod:b1ae1fd
         ports:
         - name: backend
           containerPort: 3000
