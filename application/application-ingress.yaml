@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: gitops-demo-ingress
+  namespace: gitops-demo
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: gitops.verifa.io
+    http:
+      paths:
+      - path: /config
+        backend:
+          serviceName: backend
+          servicePort: 3000
+      - path: "/"
+        backend:
+          serviceName: frontend
+          servicePort: 8000
