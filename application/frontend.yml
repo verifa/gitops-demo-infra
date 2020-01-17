@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: docker.io/benmarsden/gol-frontend-prod:04b946e
+        image: docker.io/benmarsden/gol-frontend-prod:04cb2d9
         ports:
         - name: frontend
           containerPort: 80
