@@ -23,3 +23,23 @@ releases:
   set:
     - name: controller.create
       value: true
+- name: helm-operator
+  namespace: fluxcd
+  chart: fluxcd/helm-operator
+  set: 
+    - name: helm.versions
+      value: v3
+    - name: git.pollInterval
+      value: 1m
+    - name: git.ssh.secretName
+      value: fluxcd-git-deploy
+    - name: chartsSyncInterval
+      value: 1m
+    - name: logReleaseDiffs
+      value: true
+  hooks:
+    # This hook adds the HelmRelease crd
+    - events: ["presync"]
+      showlogs: true
+      command: "/bin/sh"
+      args: ["-c", "kubectl apply -f https://raw.githubusercontent.com/fluxcd/helm-operator/master/deploy/flux-helm-release-crd.yaml"]
