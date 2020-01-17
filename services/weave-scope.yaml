@@ -1,0 +1,17 @@
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: weave-scope
+  namespace: weave
+spec:
+  releaseName: weave-scope
+  targetNamespace: weave
+  timeout: 300
+  resetValues: false
+  forceUpgrade: false
+  chart:
+    repository: https://kubernetes-charts.storage.googleapis.com/
+    name: weave-scope
+    version: 1.1.8
+  values:
+    replicas: 1

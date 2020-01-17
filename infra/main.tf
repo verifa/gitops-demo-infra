@@ -86,3 +86,10 @@ resource "kubernetes_namespace" "gitops-demo" {
     name = "gitops-demo"
   }
 }
+
+resource "kubernetes_namespace" "weave" {
+  depends_on = [google_container_node_pool.primary_preemptible_nodes]
+  metadata {
+    name = "weave"
+  }
+}
