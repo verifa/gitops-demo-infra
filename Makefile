@@ -5,7 +5,7 @@ GCLOUD_SA_NAME=gitops
 
 include admin.env
 
-all: setup-gcloud setup-serviceaccount provision-prod-cluster
+all: setup-gcloud setup-serviceaccount provision-prod-cluster install-services create-sealed-secret
 clusters: provision-prod-cluster
 
 setup-gcloud:
