@@ -35,14 +35,14 @@ resource "google_container_cluster" "cluster" {
   }
 }
 
-resource "google_container_node_pool" "primary_preemptible_nodes" {
+resource "google_container_node_pool" "primary_nodes" {
   name       = var.node_pool_name
   location   = var.zone
   cluster    = google_container_cluster.cluster.name
   node_count = var.node_count
 
   node_config {
-    preemptible  = true
+    preemptible  = false
     machine_type = var.machine_type
 
     metadata = {
@@ -74,21 +74,21 @@ resource "null_resource" "kubectl" {
 
 
 resource "kubernetes_namespace" "fluxcd" {
-  depends_on = [google_container_node_pool.primary_preemptible_nodes]
+  depends_on = [google_container_node_pool.primary_nodes]
   metadata {
     name = "fluxcd"
   }
 }
 
 resource "kubernetes_namespace" "gitops-demo" {
-  depends_on = [google_container_node_pool.primary_preemptible_nodes]
+  depends_on = [google_container_node_pool.primary_nodes]
   metadata {
     name = "gitops-demo"
   }
 }
 
 resource "kubernetes_namespace" "weave" {
-  depends_on = [google_container_node_pool.primary_preemptible_nodes]
+  depends_on = [google_container_node_pool.primary_nodes]
   metadata {
     name = "weave"
   }
