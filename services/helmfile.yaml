@@ -42,4 +42,4 @@ releases:
     - events: ["presync"]
       showlogs: true
       command: "/bin/sh"
-      args: ["-c", "kubectl apply -f https://raw.githubusercontent.com/fluxcd/helm-operator/master/deploy/flux-helm-release-crd.yaml"]
+      args: ["-c", "kubectl apply -f https://raw.githubusercontent.com/fluxcd/helm-operator/master/deploy/crds.yaml"]
